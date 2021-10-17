@@ -1,0 +1,8 @@
+
+$ mongo --quiet mongodb://root:'iam59!z$'@127.0.0.1:27017/iam_analytics?authSource=admin # 用管理员账户连接 MongoDB
+> use iam_analytics
+switched to db iam_analytics
+> db.createUser({user:"iam",pwd:"iam59!z$",roles:["dbOwner"]})
+Successfully added user: { "user" : "iam", "roles" : [ "dbOwner" ] }
+> db.auth("iam", "iam59!z$")
+1

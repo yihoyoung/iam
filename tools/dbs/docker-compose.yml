@@ -1,0 +1,51 @@
+# Use root/example as user/password credentials
+version: '3.1'
+
+services:
+
+  mysqldb:
+    container_name: mysql
+    image: 172.22.50.223/system_containers/mariadb:10.5.4-zh
+    restart: always
+    volumes:
+      - ./data/mysql:/var/lib/mysql/data
+    environment:
+      MYSQL_ROOT_PASSWORD: 'iam59!z$$'
+    ports:
+      - 3306:3306
+
+  mysqladminer:
+    container_name: mysql-admin
+    image: adminer
+    restart: always
+    ports:
+      - 8085:8080
+
+  mongo:
+    image: mongo:4.4.10-focal
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: 'iam59!z$$'
+    volumes:
+      - ./data/mongo:/data/db
+    ports:
+      - 27017:27017
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8086:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: 'iam59!z$$'
+      ME_CONFIG_MONGODB_URL: "mongodb://root:iam59!z$$@mongo:27017/"
+
+  redis:
+    container_name: redis
+    image: redis:4-alpine
+    command: redis-server --requirepass 'iam59!z$$'
+    restart: always
+    ports:
+      - 6379:6379

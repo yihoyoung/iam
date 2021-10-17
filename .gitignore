@@ -348,3 +348,7 @@ dist
 .note.md
 
 # config files, may contain sensitive information
+
+# db data
+tools/dbs/data/mongo
+tools/dbs/data/mysql

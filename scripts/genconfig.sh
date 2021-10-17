@@ -21,7 +21,7 @@ fi
 
 source "${env_file}"
 
-declare -A envs
+declare envs
 
 set +u
 for env in $(sed -n 's/^[^#].*${\(.*\)}.*/\1/p' ${template_file})
