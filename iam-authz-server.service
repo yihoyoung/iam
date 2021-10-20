@@ -1,0 +1,15 @@
+[Unit]
+Description=IAM AuthzServer
+Documentation=https://github.com/marmotedu/iam/blob/master/init/README.md
+
+[Service]
+WorkingDirectory=/data/iam/iam-authz-server
+ExecStartPre=/usr/bin/mkdir -p /data/iam/iam-authz-server
+ExecStartPre=/usr/bin/mkdir -p /var/log/iam
+ExecStart=/opt/iam/bin/iam-authz-server --config=/etc/iam/iam-authz-server.yaml
+Restart=always
+RestartSec=5
+StartLimitInterval=0
+
+[Install]
+WantedBy=multi-user.target
